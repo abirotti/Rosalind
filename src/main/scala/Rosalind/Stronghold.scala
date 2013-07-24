@@ -1,6 +1,7 @@
 package Rosalind
 
 import scala.collection.mutable
+import scala.io.Source._
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,6 +28,12 @@ object Stronghold {
 
   def RNA(sequence: String): String = sequence replace('T', 'U')
 
+  /**
+   * Improve by applying while reversing with a fold left
+   *
+   * @param sequence
+   * @return
+   */
   def REVC(sequence: String): String = {
     def complement(c: Char) = c match {
       case 'A' => 'T'
