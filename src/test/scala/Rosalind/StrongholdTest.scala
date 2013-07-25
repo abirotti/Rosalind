@@ -1,6 +1,7 @@
 package Rosalind
 
 import org.scalatest.FunSuite
+import scala.io.Source
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,5 +26,9 @@ class StrongholdTest extends FunSuite{
     val sequence = "AAAACCCGGT"
     println(Stronghold.REVC(sequence))
     assert(Stronghold.REVC(sequence) === "ACCGGGTTTT")
+  }
+
+  test("fibonacci rabbits with a twist") {
+    assert(Stronghold.FIB(5,3)===19)
   }
 }

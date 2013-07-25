@@ -34,6 +34,7 @@ object Stronghold {
    * @param sequence
    * @return
    */
+  //TODO: improve with :\
   def REVC(sequence: String): String = {
     def complement(c: Char) = c match {
       case 'A' => 'T'
@@ -45,6 +46,29 @@ object Stronghold {
     sequence.toList.map(c => complement(c)).mkString.reverse
   }
 
+  /**
+   * memoized fibonacci with a twist
+   * @param n
+   * @param k
+   * @return
+   */
+  def FIB(n: Int, k: Int): Long = {
+    val memo = new Array[Long](n)
+    def fib(x: Int): Long = x match {
+      case 1 => {memo{0}=1; 1}
+      case 2 => {memo(1)=1; 1}
+      case _ => {
+        if(memo(x-1) != 0)
+          memo(x-1)
+        else {
+          memo(x-1) = k*fib(x-2) + fib(x-1)
+          memo(x-1)
+        }
+      }
+
+    }
+    fib (n)
+  }
 
 
 }
