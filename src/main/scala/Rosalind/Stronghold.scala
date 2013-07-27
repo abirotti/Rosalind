@@ -1,7 +1,7 @@
 package Rosalind
 
 import scala.collection.mutable
-import scala.io.Source._
+import scala.io.Source
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +12,16 @@ import scala.io.Source._
  */
 object Stronghold {
 
+  def readFastaIntoMap(): Map[String, String] ={
+    val seqs: scala.collection.mutable.Map[String, String] = scala.collection.mutable.Map.empty
+    var key: String = ""
+    for(line<-Source.fromFile("GC.fasta").getLines().toList)
+      line.charAt(0) match {
+        case '>' => seqs += line.substring(1) -> ""; key = line.substring(1) ;
+        case _ => seqs.put(key, seqs(key)+line)
+      }
+    seqs.toMap
+  }
   /**
    * Implementation a bit involved, to only go through the input array once. It performs in linear time.
    * @param sequence
@@ -52,6 +62,7 @@ object Stronghold {
    * @param k
    * @return
    */
+  //TODO: use streams?
   def FIB(n: Int, k: Int): Long = {
     val memo = new Array[Long](n)
     def fib(x: Int): Long = x match {
@@ -65,10 +76,15 @@ object Stronghold {
           memo(x-1)
         }
       }
-
     }
     fib (n)
   }
 
+  def gcRatio(ss: String):Float = ss.toCharArray.count(Set('C','G')).toFloat*100 / ss.size.toFloat
+
+  def GC(mapz: Map[String, String]): String = {
+    val values = mapz.mapValues(x => gcRatio(x)).maxBy(_._2)
+    values._1+"\n"+values._2
+  }
 
 }
