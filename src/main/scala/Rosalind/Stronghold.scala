@@ -87,4 +87,12 @@ object Stronghold {
     values._1+"\n"+values._2
   }
 
+  def HAMM(seq1: String, seq2: String): Int = {
+    var occu = 0
+    for((c1, c2) <- seq1.toCharArray zip seq2.toCharArray) {
+      if (c1 != c2)
+        occu += 1
+    }
+    occu
+  }
 }
