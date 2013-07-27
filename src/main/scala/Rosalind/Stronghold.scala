@@ -89,10 +89,13 @@ object Stronghold {
 
   def HAMM(seq1: String, seq2: String): Int = {
     var occu = 0
-    for((c1, c2) <- seq1.toCharArray zip seq2.toCharArray) {
+    for((c1, c2) <- seq1 zip seq2) {
       if (c1 != c2)
         occu += 1
     }
     occu
   }
+
+  def HAMM2(s1: String, s2: String):Int =
+    ((s1 zip s2) foldLeft 0 )((ac, elm) => if(elm._1 !=elm._2) ac + 1 else ac)
 }
