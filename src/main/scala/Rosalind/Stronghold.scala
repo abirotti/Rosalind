@@ -2,6 +2,7 @@ package Rosalind
 
 import scala.collection.mutable
 import scala.io.Source
+import scala.annotation.tailrec
 
 /**
  * Created with IntelliJ IDEA.
@@ -98,4 +99,31 @@ object Stronghold {
 
   def HAMM2(s1: String, s2: String):Int =
     ((s1 zip s2) foldLeft 0 )((ac, elm) => if(elm._1 !=elm._2) ac + 1 else ac)
+
+  /**
+   * Calculates the probability of an outcome possessing a dominant allele.
+   * @param k Number of elements in a population of homozygous dominant for a factor
+   * @param m Number of elements in a population of heterozygous
+   * @param n Number of elements in a population of homozygous recessive
+   * @return
+   */
+  def IPRB(k: Int, m: Int, n: Int):String = {
+    ???
+  }
+
+  /**
+   * Returns the indices at which t is contained in s.
+   * @param s A DNA sequence to run comparisons on
+   * @param t A DNA sequence that is contained within s
+   * @return the indices at which a full t is contained in s
+   */
+  def SUBS(s: String, t:String): List[Int] = {
+    @tailrec
+    def i_SUBS(acc:List[Int], st:String, base:Int): List[Int] =
+      st.indexOf(t) match {
+        case -1 => acc.reverse
+        case x => i_SUBS((x + base)::acc, st.substring(x + 1), base + x + 1)
+      }
+    i_SUBS(Nil, s, 1)
+  }
 }

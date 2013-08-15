@@ -39,4 +39,8 @@ class StrongholdTest extends FunSuite{
   test("HAMM: how many differences?") {
     assert(7 === Stronghold.HAMM("GAGCCTACTAACGGGAT", "CATCGTAATGACGGCCT"))
   }
+
+  test("SUBS: indices of substrings") {
+    assert(List(2,4,10) === Stronghold.SUBS("GATATATGCATATACTT", "ATAT"))
+  }
 }
