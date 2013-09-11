@@ -43,4 +43,8 @@ class StrongholdTest extends FunSuite{
   test("SUBS: indices of substrings") {
     assert(List(2,4,10) === Stronghold.SUBS("GATATATGCATATACTT", "ATAT"))
   }
+
+  test("PROT: translation to protein") {
+    assert( "MAMAPRTEINSTRING" === Stronghold.PROT("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA") )
+  }
 }
