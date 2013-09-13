@@ -157,4 +157,23 @@ object Stronghold {
       prot dropRight 1 mkString
     else ""
   }
+
+  /**
+   * Returns the number of mRNA strings that are possible generators for
+   * the given protein
+   * @param protein
+   * @return
+   */
+  def MRNA(protein: String): Int = {
+    val stops = codonTable.values.filter( _.toLowerCase  == "stop") size
+    val mil: Int = 1000000
+    //    var res = 1
+//    for( split <- (protein grouped(1) toList)) {
+//      res = res * (codonTable.values.filter(_ == split) size)
+//    }
+    val res = ((protein grouped 1 toList) foldLeft 1) ((ac, elm) => ac%mil * ((codonTable.values.filter(_ == elm) size)%mil) )
+    println ( "ASD: "+res * stops % mil)
+
+    (res * stops) % mil
+  }
 }
