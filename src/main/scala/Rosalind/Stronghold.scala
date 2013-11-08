@@ -113,18 +113,18 @@ object Stronghold {
 
   /**
    * Returns the indices at which t is contained in s.
-   * @param s A DNA sequence to run comparisons on
-   * @param t A DNA sequence that is contained within s
+   * @param sequence A DNA sequence to run comparisons on
+   * @param pattern A DNA sequence that is contained within s
    * @return the indices at which a full t is contained in s
    */
-  def SUBS(s: String, t:String): List[Int] = {
+  def SUBS(sequence: String, pattern:String): List[Int] = {
     @tailrec
     def i_SUBS(acc:List[Int], st:String, base:Int): List[Int] =
-      st.indexOf(t) match {
+      st.indexOf(pattern) match {
         case -1 => acc.reverse
         case x => i_SUBS((x + base)::acc, st.substring(x + 1), base + x + 1)
       }
-    i_SUBS(Nil, s, 1)
+    i_SUBS(Nil, sequence, 0)
   }
 
   val codonTable = Map(
@@ -192,16 +192,16 @@ object Stronghold {
   def MRNA(protein: String): Int = {
     val stops = codonTable.values.filter( _.toLowerCase  == "stop") size
     val mil: Int = 1000000
-    //    var res = 1
-//    for( split <- (protein grouped(1) toList)) {
-//      res = res * (codonTable.values.filter(_ == split) size)
-//    }
-    val res = ((protein grouped 1 toList) foldLeft 1) ((ac, elm) => ac%mil * ((codonTable.values.filter(_ == elm) size)%mil) )
-    //println ( "ASD: "+res * stops % mil)
 
+    val res = ((protein grouped 1 toList) foldLeft 1) ((ac, elm) => ac % mil * ((codonTable.values.filter(_ == elm) size) % mil) )
     (res * stops) % mil
   }
 
+  /**
+   * Returns the mass of given protein
+   * @param protein
+   * @return
+   */
   def PRTM(protein: String): Double = {
     val res = ((protein grouped 1 toList) foldLeft 0d) ((acc, element) => acc + monoisotopicMass(Symbol(element)))
     println(res)
