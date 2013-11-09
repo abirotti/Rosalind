@@ -88,6 +88,12 @@ object Stronghold {
     values._1+"\n"+values._2
   }
 
+  /**
+   * Calculate the number of differences between seq1 and seq2
+   * @param seq1
+   * @param seq2
+   * @return
+   */
   def HAMM(seq1: String, seq2: String): Int = {
     var occu = 0
     for((c1, c2) <- seq1 zip seq2) {
@@ -97,6 +103,12 @@ object Stronghold {
     occu
   }
 
+  /**
+   * Calculate the number of differences between s1 and s2
+   * @param s1
+   * @param s2
+   * @return
+   */
   def HAMM2(s1: String, s2: String):Int =
     ((s1 zip s2) foldLeft 0 )((ac, elm) => if(elm._1 !=elm._2) ac + 1 else ac)
 
@@ -147,26 +159,26 @@ object Stronghold {
   )
 
   val monoisotopicMass = Map(
-  'A ->  71.03711,
-  'C ->  103.00919,
-  'D ->  115.02694,
-  'E ->  129.04259,
-  'F ->  147.06841,
-  'G ->  57.02146,
-  'H ->  137.05891,
-  'I ->  113.08406,
-  'K ->  128.09496,
-  'L ->  113.08406,
-  'M ->  131.04049,
-  'N ->  114.04293,
-  'P ->  97.05276,
-  'Q ->  128.05858,
-  'R ->  156.10111,
-  'S ->  87.03203,
-  'T ->  101.04768,
-  'V ->  99.06841,
-  'W ->  186.07931,
-  'Y ->  163.06333
+    'A ->  71.03711,
+    'C ->  103.00919,
+    'D ->  115.02694,
+    'E ->  129.04259,
+    'F ->  147.06841,
+    'G ->  57.02146,
+    'H ->  137.05891,
+    'I ->  113.08406,
+    'K ->  128.09496,
+    'L ->  113.08406,
+    'M ->  131.04049,
+    'N ->  114.04293,
+    'P ->  97.05276,
+    'Q ->  128.05858,
+    'R ->  156.10111,
+    'S ->  87.03203,
+    'T ->  101.04768,
+    'V ->  99.06841,
+    'W ->  186.07931,
+    'Y ->  163.06333
   )
 
   val waterMass = 18.01056
